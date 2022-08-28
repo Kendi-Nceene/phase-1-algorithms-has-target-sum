@@ -1,13 +1,31 @@
 function hasTargetSum(array, target) {
   // Write your algorithm here
+  const knownNumbers = {};
+
+  for (const number of array) {
+    // n steps
+    const complement = target - number;
+    if (complement in knownNumbers) return true;
+    knownNumbers[number] = true;
+  }
+
+  return false;
+
 }
 
 /* 
   Write the Big O time complexity of your function here
+   Runtime: O(n^2)
+  Space: O(n)
 */
 
 /* 
   Add your pseudocode here
+  -function called `hasTargetSum` that receives two arguments:
+  - an `array` of integers
+  - a `target` integer
+  -The function should return true if any pair of numbers in the array adds up to
+the target number.
 */
 
 /*
@@ -17,6 +35,15 @@ function hasTargetSum(array, target) {
 // You can run `node index.js` to view these console logs
 if (require.main === module) {
   // add your own custom tests in here
+  console.log("");
+
+  console.log("Expecting: false");
+  console.log("=>", hasTargetSum([4], 4));
+
+  console.log("");
+
+  console.log("Expecting: true");
+  console.log("=>", hasTargetSum([-1, 2, 7, 4], 6));
   console.log("Expecting: true");
   console.log("=>", hasTargetSum([3, 8, 12, 4, 11, 7], 10));
 
